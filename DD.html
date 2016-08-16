@@ -1,0 +1,103 @@
+<!DOCTYPE HTML>
+<HTML>
+ <HEAD>
+  <meta charset="UTF-8" />
+  <TITLE>DoDom，jquery式的操作dom</TITLE>
+  <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+  <META NAME="Author" CONTENT="">
+  <META NAME="Keywords" CONTENT="">
+  <META NAME="Description" CONTENT="">
+  <style type="text/css">
+    .red {
+        color: #f00;
+    }
+    .gray {
+        color: gray;
+    }
+    #div2 {
+        background-color: #eee;
+        margin: 1em;
+    }
+  </style>
+  <!--[if lt IE 8]>
+  <script src="ie7.queryselectorall.js"></script>
+  <![endif]-->
+ </HEAD>
+<BODY>
+
+<h1>DoDom，提供常见的操作<b>单个dom节点</b>的简单封装</h1>
+<p>包含方法：<br />
+addClass(clses),
+attr(name, val),
+bind(type, fn),
+delegate(eventType, selector, fn),
+find(selector),
+findAll(selector),
+fire(type),
+hasClass(cls),
+hasClasses(clses),
+html(html),
+index(elem),
+is(str),
+next(),
+prev(),
+prop(name, val),
+remove(),
+removeAttr(attrname),
+removeClass(cls),
+removeClasses(clses),
+siblings(),
+text(txt),
+toggleClass(clses),
+unbind(type, fn),
+unbindAll()
+
+</p>
+<p>实现代码较简单，封装程序不高。</p>
+<button type="button">Button</button>
+<input type="button" value="Button by input" />
+<button disabled="true"  style="background-color: #a3d3f5;color:#border: none;padding:0;overflow:visible;height:36px"><span style="display:block;position:relative;">Disabled Button</span></button>
+
+<div id="div" class="a b c d div">
+    一个div
+    <!-- 这是一段注释，测试IE下的chilren -->
+    <!-- 这又是一段注释，测试IE下的chilren -->
+    <a href="#">a标签in div</a>
+</div>
+<div id="div2" class="aa bb div" style="height: 400px; overflow: auto;">
+    #div2
+    <form action="" id="form2" class="form">
+        <input type="text" name="" id="" /> <input type="text" name="" id="" readonly="true" /> <input type="text" name="" id="" disabled="true" />  <br />
+        <input type="text" name="" id="" readonly="true" /> <br />
+        <input type="radio" name="r" id="" value="1" /> 1 
+        <input type="radio" name="r" id="" value="2" /> 2 
+        <input type="radio" name="r" id="" value="3" /> 3 
+        <br />
+        <input type="checkbox" name="check" id="" /> 11
+        <input type="checkbox" name="check" id="" /> 22
+        <input type="checkbox" name="check" id="" /> 33
+        <br />
+        <select name="sel" id="sel1">
+            <option value="0">0</option>
+            <option value="1">1</option>
+            <option value="2">3</option>
+        </select>
+    </form>
+    <div id="div3" style="height: 400px;">
+        #div3 in div2
+    </div>
+</div>
+<script src="DD.js"></script>
+<script>
+    DoDom('#form2').addClass('mmmmm');
+    DoDom.all('#form2 input').each('addClass', 'input');
+    console.log(DoDom.all('#form2 input').get(9).prop('type'))
+    console.log(DoDom('#form2').hasClass('mmmmm'))
+    console.log(DoDom('#form2').is('form.mmmm'))
+    console.log(DoDom('#form2').delegate('click', 'input[type="checkbox"]', function (e) {
+        console.log(e, this);
+    }))
+
+</script>
+</BODY>
+</HTML>

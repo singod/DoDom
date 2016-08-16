@@ -1,0 +1,20 @@
+{
+    "name": "dodom",
+    "version": "0.1.0",
+    "description": "方便地操作单个Dom节点；麻烦地操作多个Dom节点",
+    "main": "DD.js",
+    "scripts": {
+        "test": "echo \"Error: no test specified\" && exit 1"
+    },
+    "keywords": [
+        "DoDom",
+        "Dom"
+    ],
+    "author": "XLee",
+    "license": "MIT",
+    "dependencies": {
+        "gulp": "^3.9.1",
+        "gulp-rename": "^1.2.2",
+        "gulp-uglify": "^1.5.3"
+    }
+}
