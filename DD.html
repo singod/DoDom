@@ -100,8 +100,11 @@ unbindAll()
     console.log(DoDom('#form2').next('div#div3'))
     console.log(DoDom('#form2').delegate('click', 'input[type="checkbox"]', function (e) {
         console.log(e, this);
-    }))
-
+    }));
+    var form2 = DoDom('#form2');
+    var now = new Date().getTime();
+    for(var i = 10000;i--; form2.is('form'));
+    console.log(new Date().getTime() - now);
 </script>
 </BODY>
 </HTML>
