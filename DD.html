@@ -39,8 +39,8 @@ hasClasses(clses),
 html(html),
 index(elem),
 is(str),
-next(),
-prev(),
+next(sel),
+prev(sel),
 prop(name, val),
 remove(),
 removeAttr(attrname),
@@ -69,9 +69,9 @@ unbindAll()
     <form action="" id="form2" class="form">
         <input type="text" name="" id="" /> <input type="text" name="" id="" readonly="true" /> <input type="text" name="" id="" disabled="true" />  <br />
         <input type="text" name="" id="" readonly="true" /> <br />
-        <input type="radio" name="r" id="" value="1" /> 1 
-        <input type="radio" name="r" id="" value="2" /> 2 
-        <input type="radio" name="r" id="" value="3" /> 3 
+        <label><input type="radio" name="r" id="" value="1" /> 1 </label>
+        <label><input type="radio" name="r" id="" value="2" /> 2 </label>
+        <label><input type="radio" name="r" id="" value="3" /> 3 </label>
         <br />
         <input type="checkbox" name="check" id="" /> 11
         <input type="checkbox" name="check" id="" /> 22
@@ -89,11 +89,15 @@ unbindAll()
 </div>
 <script src="DD.js"></script>
 <script>
-    DoDom('#form2').addClass('mmmmm');
+    DoDom('#form2').addClass('mmmmm').bind('mouseenter', function (e) {
+        console.log('enter', this.tagName);
+    }).bind('mouseleave', function (e) {
+        console.log('leave', this, this.tagName);
+    });
     DoDom.all('#form2 input').each('addClass', 'input');
     console.log(DoDom.all('#form2 input').get(9).prop('type'))
     console.log(DoDom('#form2').hasClass('mmmmm'))
-    console.log(DoDom('#form2').is('form.mmmm'))
+    console.log(DoDom('#form2').next('div#div3'))
     console.log(DoDom('#form2').delegate('click', 'input[type="checkbox"]', function (e) {
         console.log(e, this);
     }))
