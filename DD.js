@@ -97,7 +97,9 @@ var DoDom = (function(doc) {
         },
         addEvent = doc.addEventListener ? function(el, type, handler) {
             // 对mouseenter和mouseleave做特殊处理，只用考虑低版的非IE浏览器
-            if (overout[type]) {
+            // 判断是mouseEnter与mouseLeave, 且临时元素不支持onmouseenter事件
+            // （支持某事件，但未添加事件监听时，其值是null; 不支持时，调用它则浏览器会以为是想调用此DOM元素上的某属性，而得到undefined）
+            if (overout[type] && tempEl.onmouseenter === undefined) {
                 // var trueHandler = type === 'mouseenter' ? function (e) {
                 //     var target = e.target,
                 //         root = this,
@@ -238,7 +240,7 @@ var DoDom = (function(doc) {
                 var res, classes, match, first;
                 for (; res = reg.exec(type);) {
                     match = res[0];
-                    first = match.substr(0, 1);
+                    first = match.charAt(0);
                     if (first == '#') {
                         if (elem.getAttribute('id') != res[3]) return false;
                     } else if (first == '.') {
@@ -303,7 +305,7 @@ var DoDom = (function(doc) {
                 }
                 first = first.nextSibling;
             }
-            return new DoDom(siblings);
+            return DoDom.all(siblings);
         },
         changeDisable = function(elm, dis, cls) {
             elm.disabled = dis;
